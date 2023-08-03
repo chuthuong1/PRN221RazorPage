@@ -1,0 +1,46 @@
+﻿@page
+@model WebApplication1.Pages.Admin.Employees.ListModel
+@using WebApplication1.DataAccess.Models;
+@{
+    Layout = "~/Pages/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="col-10">
+    <main class="container">
+        <div class="addMovies">
+            <button class="btn btn-success"><a href="/Admin/Employees/AddEmployee" style="color: black">Add New Employee</a></button>
+        </div>
+        <table class="table" id="orders">
+            <tr>
+                <th>Employee ID</th>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Title</th>
+                <th>Birth Date</th>
+                <th>Hire Date</th>
+                <th>Address</th>
+                <th>Action</th>
+            </tr>
+            @foreach (Employee employee in Model.Employee)
+            {
+                <tr>
+                    <td>@employee.EmployeeId</td>
+                    <td>@employee.LastName</td>
+                    <td>@employee.FirstName</td>
+                    <td>@employee.Title</td>
+                    <td>@employee.BirthDate</td>
+                    <td>@employee.HireDate</td>
+                    <td>@employee.Address</td>
+                    <td>
+                        <button >
+                            <a asp-page="/Admin/Employees/Edit" asp-route-id="@employee.EmployeeId">Edit</a>
+                        </button>
+                        <button >
+                            <a asp-page="/Admin/Employees/Delete" asp-route-id="@employee.EmployeeId">Delete</a>
+                        </button>
+                    </td>
+                </tr>
+            }
+        </table>
+    </main>
+</div>

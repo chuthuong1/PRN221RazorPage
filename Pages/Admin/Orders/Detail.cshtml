@@ -1,0 +1,59 @@
+﻿@page
+@model WebApplication1.Pages.Admin.Orders.DetailModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+@{
+    float sum_amount = 0;
+    Layout = "_LayoutAdmin";
+}
+
+<div class="container p-3 my-3">
+    <h1 class="text-center">Order Detail</h1>
+    <hr />
+
+    <div>
+        <h2>OrderId: @Model.OrderId</h2>
+    </div>
+
+    <table id="order-detail" class="table table-bordered mt-4">
+        <thead>
+            <tr>
+                <th>ProductId</th>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderDetail)
+            {
+                <tr>
+                    <td>@item.ProductId</td>
+                    <td>@item.Product.ProductName</td>
+                    <td>@item.UnitPrice</td>
+                    <td>@item.Quantity</td>
+                    <td>
+                        @{
+                            float sum = ((float)item.UnitPrice * (float)item.Quantity);
+                            sum_amount = sum_amount + sum;
+                        }
+                        $ @sum // tong tien cua 1 san pham
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td colspan="4"></td>
+                <td><b>Total: $ @sum_amount</b></td>
+            </tr>
+        </tbody>
+    </table>
+
+    @{
+        string name = "OrderDetail" + Model.OrderId;
+    }
+
+    <div class="text-center">
+        <a href="~/admin/orders/list" class="btn btn-primary">Back To List</a>
+    </div>
+</div>

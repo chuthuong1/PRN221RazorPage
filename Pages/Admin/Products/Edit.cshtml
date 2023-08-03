@@ -1,0 +1,56 @@
+﻿@page
+@model WebApplication1.Pages.Admin.Products.EditModel
+@{
+    Layout = "_LayoutAdmin";    
+}
+
+
+
+<div class="col-10">
+    <main class="container">
+        <h2>Edit PRodcut</h2>
+
+        @if (@ViewBag.msg != null)
+        {
+            <h2>@ViewBag.msg</h2>
+        }
+
+        <form method="post">
+            <p class="text-danger"> @ViewBag.msg</p>
+            <input hidden asp-for="Product.ProductId" />
+
+            <div class="mb-3">
+                <label for="product-name" class="form-label">Product Name</label>
+                <input asp-for="Product.ProductName" type="text" class="form-control" id="product-name" placeholder="Enter product name">
+                <span asp-validation-for="Product.ProductName"></span><br />
+            </div>
+            <div class="mb-3">
+                <label>Category</label>
+                <select asp-for="Product.CategoryId" asp-items="ViewBag.Category"></select><br />
+            </div>
+            <div class="mb-3">
+                <label for="category-id" class="form-label">Quantity</label>
+                <input asp-for="Product.QuantityPerUnit" type="text" class="form-control" id="Quantity" placeholder="Enter category ID">
+            </div>
+            <div class="mb-3">
+                <label for="quantity-per-unit" class="form-label">Price</label>
+                <input asp-for="Product.UnitPrice" type="number" min="0" max="100000" class="form-control" id="Pricet" placeholder="Enter quantity per unit">
+                <span asp-validation-for="Product.UnitPrice"></span><br />
+            </div>
+
+            <div class="form-check" style="margin-bottom: 10px">
+                <label>Discontinued</label>
+                <input asp-for="Product.Discontinued" /><br />
+            </div>
+            <button type="submit" class="btn btn-primary">Edit</button>
+
+        </form>
+
+   
+        <!-- Nút quay lại trang danh sách sản phẩm -->
+        <a asp-page="/Admin/Products/List" class="btn btn-secondary">Back to Product List</a>
+
+
+    </main>
+
+</div>

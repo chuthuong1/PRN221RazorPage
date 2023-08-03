@@ -1,0 +1,72 @@
+﻿@page
+@model WebApplication1.Pages.Admin.Employees.EditModel
+
+@using WebApplication1.DataAccess.Models;
+@{
+    Layout = "~/Pages/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="col-10">
+    <main class="container">
+        <form method="post">
+            <div class="row">
+                <div class="col-6">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Employee.EmployeeId" />
+
+                    <div class="form-group">
+                        <label asp-for="Employee.LastName" class="control-label">Last Name</label>
+                        <input asp-for="Employee.LastName" class="form-control" />
+                        <span asp-validation-for="Employee.LastName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Employee.FirstName" class="control-label">First Name</label>
+                        <input asp-for="Employee.FirstName" class="form-control" />
+                        <span asp-validation-for="Employee.FirstName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Employee.Title" class="control-label">Title</label>
+                        <input asp-for="Employee.Title" class="form-control" />
+                        <span asp-validation-for="Employee.Title" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="Employee.TitleOfCourtesy" class="control-label">Title of Courtesy</label>
+                        <input asp-for="Employee.TitleOfCourtesy" class="form-control" />
+                        <span asp-validation-for="Employee.TitleOfCourtesy" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Employee.BirthDate" class="control-label">Birth Date</label>
+                        <input asp-for="Employee.BirthDate" class="form-control" />
+                        <span asp-validation-for="Employee.BirthDate" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Employee.HireDate" class="control-label">Hire Date</label>
+                        <input asp-for="Employee.HireDate" class="form-control" />
+                        <span asp-validation-for="Employee.HireDate" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Employee.Address" class="control-label">Address</label>
+                        <input asp-for="Employee.Address" class="form-control" />
+                        <span asp-validation-for="Employee.Address" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </div>
+        </form>
+
+        <div>
+            <a asp-page="/Admin/Employees/List">Back to List</a>
+        </div>
+    </main>
+</div>

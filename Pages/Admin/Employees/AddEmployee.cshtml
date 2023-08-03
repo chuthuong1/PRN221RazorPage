@@ -1,0 +1,92 @@
+﻿@page
+@model WebApplication1.Pages.Admin.Employees.AddEmployeeModel
+@{
+    Layout = "~/Pages/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="col-10">
+    <main class="container">
+        <h1>Tạo mới nhân viên</h1>
+
+        <hr />
+
+        <form method="post">
+            <div class="row">
+                <div class="col-6">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div> <!-- Hiển thị thông báo lỗi chỉ liên quan đến model -->
+                    <div class="form-group">
+                        <label asp-for="Employee.LastName" class="control-label">Họ và tên lót</label>
+                        <input asp-for="Employee.LastName" class="form-control" />
+                        <span asp-validation-for="Employee.LastName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Employee.FirstName" class="control-label">Tên</label>
+                        <input asp-for="Employee.FirstName" class="form-control" />
+                        <span asp-validation-for="Employee.FirstName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Employee.Title" class="control-label">Chức danh</label>
+                        <input asp-for="Employee.Title" class="form-control" />
+                        <span asp-validation-for="Employee.Title" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="Employee.TitleOfCourtesy" class="control-label">Tiêu đề lịch sự</label>
+                        <input asp-for="Employee.TitleOfCourtesy" class="form-control" />
+                        <span asp-validation-for="Employee.TitleOfCourtesy" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Employee.BirthDate" class="control-label">Ngày sinh</label>
+                        <input asp-for="Employee.BirthDate" class="form-control" />
+                        <span asp-validation-for="Employee.BirthDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Employee.HireDate" class="control-label">Ngày tuyển dụng</label>
+                        <input asp-for="Employee.HireDate" class="form-control" />
+                        <span asp-validation-for="Employee.HireDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Employee.Address" class="control-label">Địa chỉ</label>
+                        <input asp-for="Employee.Address" class="form-control" />
+                        <span asp-validation-for="Employee.Address" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="Employee.City" class="control-label">Thành phố</label>
+                        <input asp-for="Employee.City" class="form-control" />
+                        <span asp-validation-for="Employee.City" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Employee.Region" class="control-label">Vùng</label>
+                        <input asp-for="Employee.Region" class="form-control" />
+                        <span asp-validation-for="Employee.Region" class="text-danger"></span>
+                    </div>
+                  
+                    <div class="form-group">
+                        <label asp-for="Employee.Country" class="control-label">Quốc gia</label>
+                        <input asp-for="Employee.Country" class="form-control" />
+                        <span asp-validation-for="Employee.Country" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Employee.HomePhone" class="control-label">Số điện thoại nhà</label>
+                        <input asp-for="Employee.HomePhone" class="form-control" />
+                        <span asp-validation-for="Employee.HomePhone" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Employee.Notes" class="control-label">Ghi chú</label>
+                        <input asp-for="Employee.Notes" class="form-control" />
+                        <span asp-validation-for="Employee.Notes" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Tạo mới" class="btn btn-primary" />
+            </div>
+            <a asp-page="/Admin/Employees/List">Quay lại danh sách</a>
+        </form>
+    </main>
+</div>

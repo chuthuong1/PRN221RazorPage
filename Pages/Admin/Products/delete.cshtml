@@ -1,0 +1,32 @@
+﻿
+@page
+@model WebApplication1.Pages.Admin.Products.deleteModel
+@{
+Layout = "_LayoutAdmin";
+}
+
+<div class="col-10">
+    <main class="container">
+        <h2>Edit PRodcut</h2>
+
+        @if (@ViewBag.msg != null)
+        {
+            <h2>@ViewBag.msg</h2>
+        }
+
+        <form method="post">
+            <p class="text-danger"> @ViewBag.msg</p>
+          
+            <button type="submit" class="btn btn-primary">Edit</button>
+
+        </form>
+
+
+        <!-- Nút quay lại trang danh sách sản phẩm -->
+        <a asp-page="/Admin/Products/List" class="btn btn-secondary">Back to Product List</a>
+
+
+    </main>
+
+</div>
+

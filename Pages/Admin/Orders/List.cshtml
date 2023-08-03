@@ -1,0 +1,83 @@
+﻿@page
+@model WebApplication1.Pages.Admin.Orders.ListModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+@{
+    ViewBag.Title = "Index";
+    Layout = "_LayoutAdmin";
+}
+
+<div class="container p-3 my-3">
+    <h1 class="text-center mb-3">List of Orders</h1>
+    <hr />
+    <div class="row justify-content-end mb-4">
+        <div class="col-8">
+            <form method="post">
+                <input type="hidden" name="id" value="@ViewBag.id" />
+                <label class="font-weight-bold">Start Order Date:</label>
+                <input type="date" name="start" value="@ViewBag.start" class="mr-2">
+                <label class="font-weight-bold">End Order Date:</label>
+                <input type="date" id="to" name="end" value="@ViewBag.end" class="mr-2">
+                <input type="submit" value="Filter" class="btn btn-primary">
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-4 mt-2">
+            <h2>Customers</h2>
+            <div>
+                <a asp-route-id="@null" class="font-weight-bold p-2">All Customer</a><br />
+                @foreach (var item in Model.Customers)
+                {
+                    @if (ViewBag.id == @item.CustomerId)
+                    {
+                        <a asp-route-id="@item.CustomerId" class="text-dark font-weight-bold p-2">@item.CompanyName</a>
+                    }
+                    else
+                    {
+                        <a asp-route-id="@item.CustomerId" class="font-weight-bold p-2">@item.CompanyName</a>
+                    }
+                    <br />
+                }
+            </div>
+        </div>
+
+        <div class="col-8">
+            <div id="simple-bar">
+                <table id="table-order" class="table table-bordered">
+                    <thead class="sticky-top thead-dark">
+                        <tr>
+                            <th>OrderId</th>
+                            <th>Order Date</th>
+                            <th>Required Date</th>
+                            <th>Shipped Date</th>
+                            <th>Freight</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Order)
+                        {
+                            <tr class="w-100">
+                                <td>
+                                    <a asp-page="Detail" asp-route-id="@item.OrderId">@Html.DisplayFor(modelItem => item.OrderId)</a>
+                                </td>
+                                <td>@Html.DisplayFor(modelItem => item.OrderDate)</td>
+                                <td>@Html.DisplayFor(modelItem => item.RequiredDate)</td>
+                                <td>@Html.DisplayFor(modelItem => item.ShippedDate)</td>
+                                <td>$ @Html.DisplayFor(modelItem => item.Freight)</td>
+                            </tr>
+                        }
+                        <tr>
+                            <td colspan="4"></td>
+                            <td><b>Total Freight: $ @ViewBag.totalFreight</b></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            @{
+                string name = ViewBag.id + "_" + ViewBag.start + "to" + ViewBag.end;
+            }
+        </div>
+    </div>
+</div>

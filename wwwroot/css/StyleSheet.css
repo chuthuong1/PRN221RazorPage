@@ -1,0 +1,37 @@
+﻿.container {
+    display: flex;
+    height: 100vh; /* Chiều cao của màn hình */
+}
+
+.left {
+    flex-basis: 20%; /* Khối trái chiếm 15% chiều rộng */
+    background-color: lightblue;
+    margin-right: 30px;
+}
+
+.right {
+    flex-basis: 80%; /* Khối phải chiếm 70% chiều rộng */
+    background-color: lightgray;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column; /* Chiều dọc */
+}
+
+.upper {
+    flex-basis: 10%; /* Khối trên chiếm 10% */
+    background-color: lightgreen;
+    display: flex;
+    justify-content: flex-end; /* Căn phải */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    padding-right: 10px;
+}
+
+.lower {
+    flex-basis: 90%; /* Khối dưới chiếm 90% */
+    background-color: lightyellow;
+    padding: 10px;
+}
+
+.cart-icon {
+    font-size: 24px;
+}

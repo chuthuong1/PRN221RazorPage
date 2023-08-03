@@ -1,0 +1,62 @@
+﻿@page
+@model WebApplication1.Pages.LoginModel
+@{
+}
+<form method="post">
+    <div class="login">
+        <p style="color:#FF0000">@ViewData["Message"]</p>
+        <label class="lbEmail">Email:</label>
+        <input id="User" name="Email" type="email" placeholder="Nhập email" autofocus class="ipEmail">
+        <label class="lbPass">Mật khẩu:</label>
+        <input id="password" name="Password" type="password" placeholder="Nhập mật khẩu" class="ipPass">
+        <button type="submit" class="btnsubmit">Đăng nhập</button>
+    </div>
+</form>
+
+<style>
+    <style >
+    /* CSS để căn giữa form và thiết kế */
+    body, html {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .login {
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        width: 300px;
+    }
+
+    .lbEmail, .lbPass {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .ipEmail, .ipPass {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .btnsubmit {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        .btnsubmit:hover {
+            background-color: #45a049;
+        }
+</style>
+
+</style>

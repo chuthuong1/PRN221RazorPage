@@ -1,0 +1,153 @@
+﻿@page
+@model WebApplication1.Pages.Admin.dashboardModel
+@{
+    Layout = "~/Pages/Shared/_LayoutAdmin.cshtml";
+}
+
+<div id="content-right">
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <div class="row mb-4">
+                <!-- Icon Cards-->
+                <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-2 mt-4">
+                    <div class="rounded-2">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 col-sm-4 col-4 rideone bg-info">
+                                <i class="bi bi-currency-dollar"></i>
+                            </div>
+                            <div class="col-lg-9 col-md-8 col-sm-8 col-8 fontsty">
+                                <h4>Weekly Sales</h4>
+                                <p>@Model.weeklySale</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-2 mt-4">
+                    <div class="rounded-2">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 col-sm-4 col-4 ridetwo bg-success">
+                                <i class="bi bi-receipt"></i>
+                            </div>
+                            <div class="col-lg-9 col-md-8 col-sm-8 col-8 fontsty">
+                                <h4>Total Weekly Order</h4>
+                                <p>@Model.totalOrders</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-2 mt-4">
+                    <div class="rounded-2">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 col-sm-4 col-4 ridethree  bg-secondary">
+                                <i class="bi bi-person-vcard"></i>
+                            </div>
+                            <div class="col-lg-9 col-md-8 col-sm-8 col-8 fontsty">
+                                <h4>Total Customers</h4>
+                                <p>@Model.totalCustomer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row m-auto mb-3">
+                <form method="get" id="form-order-year">
+                    <select name="orderyear" onchange="document.getElementById('form-order-year').submit();">
+                        <option value="0">Current</option>
+                        <!-- Thêm các tùy chọn cho năm -->
+                    </select>
+                </form>
+            </div>
+
+            <div id="dashboard-2">
+                <div id="chart" style="text-align: center;">
+                    <div id="chart1">
+                        <div class="row">
+                            <div class="col-6">
+                                <h3>Statistic Orders (Month)</h3>
+                                <canvas id="myChart1" style="width: 90%; height:5px"></canvas>
+                            </div>
+                            <div class="col-6">
+                                <h3>Income (Month)</h3>
+                                <canvas id="myChart2" style="width: 90%; height:5px"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @* Phần script để vẽ biểu đồ *@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+    <script>
+        var ctx1 = document.getElementById('myChart1').getContext('2d');
+        var ctx2 = document.getElementById('myChart2').getContext('2d');
+
+        // Hàm lấy dữ liệu từ Model và vẽ biểu đồ
+        function drawCharts(ordersData, incomeData, ordersByDayData) {
+            // Biểu đồ số lượng đơn hàng theo ngày
+            var chart1 = new Chart(ctx1, {
+                type: 'line',
+                data: {
+                    labels: ordersByDayData.labels,
+                    datasets: [{
+                        label: 'Number of Orders',
+                        data: ordersByDayData.data,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // Biểu đồ doanh thu theo tháng
+            var chart2 = new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: incomeData.labels,
+                    datasets: [{
+                        label: 'Income',
+                        data: incomeData.data,
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        // Gọi hàm để vẽ biểu đồ khi trang được load
+        var ordersData = {
+            labels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5'], // Dữ liệu mẫu (tạm thời)
+            data: [10, 20, 30, 15, 25] // Dữ liệu mẫu (tạm thời)
+        };
+        var incomeData = {
+            labels: ['Month 1', 'Month 2', 'Month 3', 'Month 4', 'Month 5'], // Dữ liệu mẫu (tạm thời)
+            data: [500, 800, 600, 700, 900] // Dữ liệu mẫu (tạm thời)
+        };
+        var ordersByDayData = {
+            labels: [], // Dữ liệu số ngày (sẽ cập nhật từ code behind)
+            data: [] // Dữ liệu số lượng đơn hàng theo ngày (sẽ cập nhật từ code behind)
+        };
+        drawCharts(ordersData, incomeData, ordersByDayData);
+    </script>
+}

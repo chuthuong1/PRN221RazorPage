@@ -1,0 +1,59 @@
+﻿@page
+@model WebApplication1.Pages.Admin.Customers.ListModel
+@{
+    Layout = "~/Pages/Shared/_LayoutAdmin.cshtml";
+}
+<div class="col-10">
+    <main class="container">
+        <div>
+            <h1>Customers</h1>
+            <form action="" method="get">
+                <input type="text" name="search" placeholder="Nhập tên khách hàng để tìm kiếm" value="@ViewData["search"]">
+                <input type="submit" value="Tìm kiếm">
+            </form>
+            <div>
+                <table class="table" id="orders">
+                    <thead>
+                        <tr>
+                            <th>
+                               Company Name
+                            </th>
+                            <th>
+                                ContactName
+                            </th>
+                            <th>
+                               ContactTitle
+                            </th>
+                            <th>
+                              Address
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Customer)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CompanyName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ContactName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ContactTitle)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Address)
+                                </td>
+                                <td>
+                                    <button ><a class="text-black" asp-page="./Details" asp-route-id="@item.CustomerId">Chi tiết</a> </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>

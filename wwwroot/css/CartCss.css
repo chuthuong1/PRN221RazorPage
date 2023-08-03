@@ -1,0 +1,26 @@
+﻿<style >
+.container {
+    width: 70%;
+    margin: 40px auto 0;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.col-item {
+    width: 20%;
+}
+
+.img {
+    width: 100%;
+}
+
+.btn {
+    width: 100px;
+    height: 40px;
+    border-radius: 2px;
+}
+
+</style >

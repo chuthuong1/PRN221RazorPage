@@ -1,0 +1,61 @@
+﻿@page
+@using WebApplication1.Bussiness.DTO;
+@model WebApplication1.Pages.Cart.ListModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<link rel="stylesheet" href="~/Css/CartCss.css" />
+<div class="container">
+    <h2>Cart</h2>
+    <p>Cart: @Model.CartItems.Count</p>
+    @if (Model.CartItems != null && Model.CartItems.Count > 0)
+    {
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Tên</th>
+                <th>Giá</th>
+                <th>Số Lượng</th>
+                <th></th>
+                <th></th>
+            </tr>
+            @foreach (CartItem c in Model.CartItems)
+            {
+                <tr>
+                    <form method="post">
+                        <input type="hidden" name="productId" value="@c.Product.ProductId" />
+                    <td>@c.Product.ProductId</td>
+                    <td>@c.Product.ProductName</td>
+                    <td>@c.Product.UnitPrice</td>
+                    <td>
+                        <input type="number" name="quantity" value="@c.Quantity" min="1" />
+                    </td>
+                    <td>
+                        <button class="btn" asp-page-handler="Update">Update</button>
+                    </td>
+                    <td>
+                        <button class="btn" asp-page-handler="Delete">Delete</button>
+                    </td>
+                    </form>
+                </tr>
+            }
+        </table>
+
+        <form method="post" asp-page-handler="Checkout">
+            <button class="btn checkout-btn">Thanh Toán</button>
+        </form>
+    }
+    else
+    {
+        <p>Giỏ hàng đang trống.</p>
+    }
+</div>
+<a href="/Products/List">Back to Product</a>
+
+@if (ViewData["mess"] != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("@ViewData["mess"]");
+        };
+    </script>
+}

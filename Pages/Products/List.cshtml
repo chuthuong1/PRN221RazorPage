@@ -1,0 +1,74 @@
+﻿@page
+@using WebApplication1.Bussiness.DTO
+@model WebApplication1.Pages.Products.ListModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+  }
+
+<link rel="stylesheet" href="~/Css/StyleSheet.css" />
+
+<div class="container">
+    <div class="left">
+
+    </div>
+    <div class="right">
+        <div class="upper">
+            <!-- Nội dung của khối trên -->
+            <a asp-page="/Products/Add" asp-page-handler="OnGet" id="cartLink">
+                <!-- Chuyển đến trang giỏ hàng -->
+                <span class="cart-icon">&#128722;</span> <!-- Biểu tượng giỏ hàng -->
+                <span id="cartQuantity">Add Product</span> <!-- Hiển thị số lượng sản phẩm trong giỏ hàng -->
+            </a>
+        </div>
+        <div class="lower">
+            <!-- Nội dung của khối dưới -->
+            <table>
+                <tr>
+                    <th>Product ID</th>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Action</th>
+                </tr>
+                @foreach (ProductDTO p in Model.Products)
+                {
+                    <tr pid="@p.ProductId" >
+                        <td>@p.ProductId</td>
+                        <td>@p.ProductName</td>
+                        <td>@p.UnitPrice đ</td>
+                        <td rowspan="2" id="quantity" class="quantityAbc">@p.UnitsInStock</td>
+                        <td rowspan="2">
+                            <form method="post" asp-page-handler="AddToCart">
+                                <input type="hidden" name="productId" value="@p.ProductId" />
+                                <button>Add To Cart</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                }
+            </table>
+
+
+
+        </div>
+    </div>
+</div>
+
+@if (ViewData["mess"] != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("@ViewData["mess"]");
+        };
+    </script>
+}
+
+
+<!-- Kết nối tới SignalR hub -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.12/signalr.min.js"></script>
+<script src="~/js/site.js"></script>

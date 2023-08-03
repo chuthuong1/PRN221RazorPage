@@ -1,0 +1,63 @@
+﻿@page
+@model WebApplication1.Pages.Products.AddModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    Layout = "_LayoutAdmin";
+}
+
+
+<div class="col-10">
+    <main class="container">
+        <h2>Thêm sản phẩm mới</h2>
+
+        <form method="post">
+            <div>
+                <label for="productName">Tên sản phẩm:</label>
+                <input type="text" id="productName" name="ProductName" required />
+            </div>
+            <div>
+                <label for="categoryId">Danh mục:</label>
+                <select id="categoryId" name="CategoryId">
+                    <option value="">Chọn danh mục</option>
+                    @foreach (var category in Model.Categories)
+                    {
+                        <option value="@category.CategoryId">@category.CategoryName</option>
+                    }
+                </select>
+            </div>
+            <div>
+                <label for="supplierId">Nhà cung cấp:</label>
+                <select id="supplierId" name="SupplierId">
+                    <option value="">Chọn nhà cung cấp</option>
+                    @foreach (var supplier in Model.Suppliers)
+                    {
+                        <option value="@supplier.SupplierId">@supplier.CompanyName</option>
+                    }
+                </select>
+            </div>
+            <div>
+                <label for="quantityPerUnit">quantityPerUnit:</label>
+                <input type="text" id="quantityPerUnit" name="QuantityPerUnit" />
+            </div>
+            <div>
+                <label for="unitPrice">Đơn giá:</label>
+                <input type="text" id="unitPrice" name="UnitPrice" />
+            </div>
+            <div>
+                <label for="unitsInStock">Số lượng :</label>
+                <input type="text" id="unitsInStock" name="UnitsInStock" />
+            </div>
+
+
+            <!-- Các trường dữ liệu khác ở đây -->
+            <button type="submit">Thêm sản phẩm</button>
+        </form>
+        <!-- Nút quay lại trang danh sách sản phẩm -->
+        <a asp-page="/Admin/Products/List" class="btn btn-secondary">Back to Product List</a>
+
+
+    </main>
+
+</div>
+

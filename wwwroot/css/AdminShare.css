@@ -1,0 +1,91 @@
+﻿body {
+}
+
+.container {
+    max-width: 1260px;
+}
+
+#paging {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.pagination {
+    display: inline-block;
+    text-align: center;
+}
+
+    .pagination a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+    }
+
+        .pagination a.active {
+            color: white;
+            border-radius: 5px;
+        }
+
+        .pagination a:hover:not(.active) {
+            background-color: #ddd;
+            border-radius: 5px;
+        }
+
+#simple-bar {
+    border: 1px solid grey;
+    margin-top: 0;
+    max-height: 400px;
+    min-height: 400px;
+    margin-bottom: 10px;
+}
+
+main {
+    border-radius: 2px solid gray;
+    width: 90%;
+    margin: 10px auto;
+}
+
+i {
+    font-size: 40px;
+    color: white;
+    margin: auto;
+}
+
+nav.navbar.navbar-expand-sm.navbar-toggleable-sm.navbar-light.bg-white.border-bottom.box-shadow.mb-3, footer, .col-2 {
+}
+
+#content_left {
+    width: 15%;
+    height: auto;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.col-2 a {
+    color: black;
+    font-size: 24px;
+    margin-bottom: 25px;
+}
+
+form {
+    float: left;
+}
+
+input {
+    border-radius: 2px;
+    padding: 5px;
+}
+
+footer {
+    height: 50px;
+    bottom: 0;
+    margin-top: 20px;
+    width: 100%;
+}
+
+#dashboard {
+    height: 800px;
+}
